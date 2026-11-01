@@ -1,9 +1,10 @@
 from mininet.topo import Topo
+from mininet.net import Mininet
+from mininet.node import RemoteController
+from mininet.cli import CLI
 
 class MyTopo( Topo ):
-    "Some topology"
-
-    def build ( self ):
+    def build( self ):
         server = self.addHost( 'h1' )
         client1 = self.addHost( 'h2' )
         client2 = self.addHost( 'h3' )
@@ -14,4 +15,13 @@ class MyTopo( Topo ):
         self.addLink( client1, switch )
         self.addLink( client2, switch )
 
-topos = { 'mytopo': ( lambda: MyTopo() ) }
+if __name__ == '__main__':
+    topo = MyTopo()
+    net = Mininet(topo=topo, controller=lambda name: RemoteController(name, ip='127.0.0.1'))
+    net.start()
+    
+    print("Testing basic connectivity...")
+    net.pingAll()
+    
+    CLI(net)
+    net.stop()
