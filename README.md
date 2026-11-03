@@ -107,9 +107,9 @@ Clients send a UDP request to the server and compute their clock offset from the
 
 ## Protocol and Communication Flow
 
-1. The client records T~1~ and sends a 1-byte request to UDP port 8000.
+1. The client records T<sub>1</sub> and sends a 1-byte request to UDP port 8000.
 2. The server reads its own clock and replies with it as an 8-byte big-endian timestamp in microseconds.
-3. The client records T~2~ when the reply arrives.
+3. The client records T<sub>2</sub> when the reply arrives.
 4. The client computes the RTT and offset, then applies the offset to its system clock.
 5. If no reply arrives within 2 seconds, the client retries, up to 3 attempts in total. After that it exits with an error.
 
