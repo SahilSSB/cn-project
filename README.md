@@ -3,7 +3,7 @@
 
 ## Overview
 
-The basic premise of the project is to sync clocks between clients using a central reference server.The network itself is built with Mininet and Open vSwitch, and its forwarding behaviour is managed by a ==Ryu SDN controller== speaking ==OpenFlow 1.3==.
+The basic premise of the project is to sync clocks between clients using a central reference server.The network itself is built with Mininet and Open vSwitch, and its forwarding behaviour is managed by a __Ryu SDN controller__ speaking __OpenFlow 1.3__.
 
 The core issue is that a timestamp is already out of date by the time it arrives, because the packet spent some time travelling through the network. The project measures the round-trip time, estimates the one-way delay from it, and compensates for it.
 
@@ -102,7 +102,6 @@ When several rules could match a packet, the highest priority wins.
 +-------------------+
                           
 ```
-<br><br>
 Clients send a UDP request to the server and compute their clock offset from the reply. The switch forwards traffic using rules pushed by the controller.
 
 
@@ -113,7 +112,6 @@ Clients send a UDP request to the server and compute their clock offset from the
 3. The client records T~2~ when the reply arrives.
 4. The client computes the RTT and offset, then applies the offset to its system clock.
 5. If no reply arrives within 2 seconds, the client retries, up to 3 attempts in total. After that it exits with an error.
-<br><br>
 
 - Big-endian ("network byte order") is used so the timestamp is interpreted the same way regardless of the CPU architecture of either machine.
 
@@ -127,7 +125,6 @@ Clients send a UDP request to the server and compute their clock offset from the
 - After a rule exists, the switch forwards matching packets without involving the controller.
 
 
-4. Shared VM clock: Because all Mininet hosts use the VM's clock, the demo actually adjusts the clock of the entire virtual machine.
 
 
 
