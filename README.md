@@ -127,11 +127,6 @@ Clients send a UDP request to the server and compute their clock offset from the
 - After a rule exists, the switch forwards matching packets without involving the controller.
 
 
-## Limitations and Notes
-
-1. Symmetric delay is assumed: Asymmetric paths introduce offset error.
-2. Single exchange per sync: Real NTP filters many samples and tracks clock drift, this project performs one measurement per run.
-3. No authentication: Any host can query the server, and replies are not verified.
 4. Shared VM clock: Because all Mininet hosts use the VM's clock, the demo actually adjusts the clock of the entire virtual machine.
 
 
